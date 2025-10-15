@@ -1,40 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive CV | Maryna Van Eeden - E-Commerce Operations Lead</title>
+    <title>Maryna Van Eeden - E-Commerce Operations Lead CV</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Calm Harmony -->
-    <!-- Application Structure Plan: A single-page dashboard design with a sticky top navigation for easy access to key sections: Overview, Experience, Skills, and Education. This structure was chosen to allow non-linear exploration, enabling recruiters to quickly jump to the information most relevant to them. The 'Overview' section acts as a high-impact summary with dynamic stat cards. The 'Experience' section uses an interactive timeline, where details are revealed on click, preventing information overload. This user-centric design transforms a static document into an engaging portfolio that highlights key achievements and skills visually. -->
-    <!-- Visualization & Content Choices: 
-        1. Key Metrics -> Goal: Inform/Impress -> Viz: Stat Cards -> Interaction: Static -> Justification: Immediately grabs attention and quantifies achievements in profitability and efficiency. -> Method: HTML/Tailwind.
-        2. Career Timeline -> Goal: Organize/Show Change -> Viz: Interactive Accordion -> Interaction: Click to expand/collapse job details, focusing on logistics and systems. -> Justification: Keeps the UI clean and allows users to drill down into specific operational contributions. -> Method: JavaScript.
-        3. Core Competencies -> Goal: Organize/Compare -> Viz: Radar Chart -> Interaction: Hover for tooltips -> Justification: Provides a quick, holistic visual summary of operational and leadership strengths (Strategy, Logistics, Process). -> Library: Chart.js.
-        4. Experience Duration -> Goal: Compare -> Viz: Horizontal Bar Chart -> Interaction: Hover for tooltips showing key achievements. -> Justification: Visually represents time spent in each operational role and connects duration with impact. -> Library: Chart.js.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F8F7F4;
-            color: #2c3e50;
-        }
-        .stat-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             height: 300px;
@@ -42,359 +20,308 @@
         }
         @media (min-width: 768px) {
             .chart-container {
-                height: 400px;
+                height: 350px;
             }
         }
-        .timeline-item-header { cursor: pointer; }
+        .nav-link.active {
+            border-bottom-color: #A32A29;
+            color: #A32A29;
+            font-weight: 600;
+        }
+        /* Custom styles for professional aesthetic */
+        .card-bg {
+            background-color: #fcfcfc;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .text-primary { color: #A32A29; } /* PEP Brand color approximation */
     </style>
+    <!-- Chosen Palette: Warm Neutrals (#FCFCFC, #F5F5F5) with a subtle primary accent (#A32A29 - dark red) -->
+    <!-- Application Structure Plan: Dashboard Layout. Chosen for its efficiency in presenting diverse data types (stats, charts, text) on a single screen. Key sections: Header/Objective, Dynamic Stats Grid, Core Competencies, Interactive Experience Selector (to switch between roles), and Detailed Experience Cards. This structure prioritizes quick scannability for hiring managers, allowing them to instantly see metrics and then drill down into relevant experience. -->
+    <!-- Visualization & Content Choices: Summary: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification -> Library/Method - Confirming NO SVG/Mermaid, supporting the DESIGNED structure.
+    1. Overall Expertise/Experience -> Goal: Quantify breadth and specialization -> Viz: Radar Chart -> Interaction: Highlight skills -> Justification: Shows balance/specialization visually -> Library: Chart.js.
+    2. Career Timeline -> Goal: Show tenure and progression -> Viz: Horizontal Bar Chart -> Interaction: Highlight duration of roles -> Justification: Clear time mapping -> Library: Chart.js.
+    3. Achievement Metrics -> Goal: Immediate impact communication -> Viz: Stat Cards -> Interaction: None -> Justification: High-impact numerical presentation -> Library: HTML/Tailwind.
+    4. Detailed Experience -> Goal: Contextual description of role activities -> Viz: Text/Lists -> Interaction: Tab/Button switching for roles -> Justification: Keeps page clean, focuses content -> Library: JS/HTML. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
-<body class="antialiased">
+<body class="bg-gray-100 min-h-screen text-gray-800">
+    <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div>
-                <h1 class="text-xl font-bold text-slate-800">Maryna Van Eeden</h1>
-                <p class="text-sm text-slate-600">E-Commerce Operations Lead Candidate | Last-Mile Logistics & Process Expert</p>
+        <!-- HEADER & OBJECTIVE SECTION -->
+        <header class="bg-white card-bg p-6 rounded-xl mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div class="mb-4 md:mb-0">
+                    <h1 class="text-3xl font-extrabold text-gray-900">MARYNA VAN EEDEN</h1>
+                    <p class="text-xl font-semibold text-primary mt-1">E-Commerce Operations Lead Candidate | Last-Mile Logistics & Process Expert</p>
+                </div>
+                <div class="text-sm text-right">
+                    <p>+27 84 987 0106</p>
+                    <p>marynavaneedenmelkbos@gmail.com</p>
+                    <p>Cape Town, South Africa</p>
+                </div>
             </div>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="#overview" class="text-slate-600 hover:text-teal-600 transition-colors">Overview</a>
-                <a href="#experience" class="text-slate-600 hover:text-teal-600 transition-colors">Experience</a>
-                <a href="#skills" class="text-slate-600 hover:text-teal-600 transition-colors">Skills</a>
-                <a href="#education" class="text-slate-600 hover:text-teal-600 transition-colors">Education</a>
-            </div>
-             <div class="md:hidden">
-                <select id="mobile-nav" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500">
-                    <option value="#overview">Overview</option>
-                    <option value="#experience">Experience</option>
-                    <option value="#skills">Skills</option>
-                    <option value="#education">Education</option>
-                </select>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container mx-auto px-6 py-12">
-
-        <section id="overview" class="mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-slate-800 mb-4">Professional Overview</h2>
-                <p class="max-w-3xl mx-auto text-slate-600">
-                    This section immediately addresses the key requirements of the E-commerce Operations Lead role, focusing on **operational ownership, profitability, and scalability**. The objective statement outlines my proven ability to manage the full **end-to-end operational value chain**, quantified by the key performance indicators below.
+            <div class="mt-4 border-t border-gray-200 pt-4">
+                <p class="text-base leading-relaxed text-gray-600">
+                    An accomplished Product and Operations Leader with over 17 years of experience in retail, e-commerce, insurance, and logistics. I specialize in designing and implementing end-to-end operational processes for complex B2C and B2B systems, with a deep focus on optimizing last-mile delivery and fulfillment efficiency. I possess the strategic vision to scale operations and the commercial acumen to drive multimillion-rand profit growth through data-led optimization and Agile transformation. My expertise directly supports establishing a fast, cost-efficient, and profitable customer journey from click to delivery.
                 </p>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-md mb-12">
-                <h3 class="text-2xl font-bold text-slate-800 mb-4">Objective: E-Commerce Operations Lead</h3>
-                <p class="text-slate-700 leading-relaxed">
-                    An accomplished Product and Operations Leader with 17+ years of experience across e-commerce, retail, and logistics. I specialize in designing and implementing end-to-end operational processes for complex B2C and B2B systems, with a deep focus on optimizing last-mile delivery and fulfillment. Proven expertise in establishing Standard Operating Procedures (SOPs), driving multimillion-rand profitability (R75M annual gross profit), and delivering cost-efficient, fast, and flawless customer journeys. My hands-on, data-led approach ensures business continuity, rapid scaling, and compliance with service level agreements.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                <div class="stat-card bg-white p-6 rounded-xl shadow-md">
-                    <p class="text-4xl font-bold text-teal-600">R75M</p>
-                    <p class="text-slate-600 mt-2">Annual Gross Profit Generated</p>
-                </div>
-                <div class="stat-card bg-white p-6 rounded-xl shadow-md">
-                    <p class="text-4xl font-bold text-teal-600">100%</p>
-                    <p class="text-slate-600 mt-2">Core Platform Uptime Maintained</p>
-                </div>
-                <div class="stat-card bg-white p-6 rounded-xl shadow-md">
-                    <p class="text-4xl font-bold text-teal-600">25%</p>
-                    <p class="text-slate-600 mt-2">Time-to-Market Reduction (Agile)</p>
-                </div>
-                 <div class="stat-card bg-white p-6 rounded-xl shadow-md">
-                    <p class="text-4xl font-bold text-teal-600">17+</p>
-                    <p class="text-slate-600 mt-2">Years Operational Experience</p>
-                </div>
+        </header>
+
+        <!-- DYNAMIC STATS GRID -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 border-b pb-2 text-gray-700">Operational Impact & Commercial Acumen</h2>
+            <div id="stat-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stat Cards populated by JS -->
             </div>
         </section>
 
-        <section id="experience" class="mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-slate-800 mb-4">Relevant Professional Experience</h2>
-                <p class="max-w-3xl mx-auto text-slate-600">
-                    My career history is detailed below, emphasizing my direct experience in e-commerce fulfillment, logistics, system management, cost optimization, and cross-functional leadership—all critical for the E-commerce Operations Lead role. Click on any position to see specific contributions.
-                </p>
-            </div>
-
-            <div class="space-y-6" id="experience-timeline">
-            </div>
+        <!-- CORE COMPETENCIES & VISUALIZATION -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             
-            <div class="bg-white p-8 rounded-xl shadow-md mt-12">
-                 <h3 class="text-2xl font-bold text-slate-800 mb-4 text-center">Operational Tenure Visualization</h3>
-                 <div class="chart-container h-64 md:h-80 mx-auto">
-                    <canvas id="experienceChart"></canvas>
+            <!-- COMPETENCIES LIST -->
+            <div class="lg:col-span-1 bg-white card-bg p-6 rounded-xl">
+                <h2 class="text-2xl font-bold mb-4 text-gray-700">Core Competencies</h2>
+                <div id="skills-list" class="space-y-4">
+                    <!-- Skills populated by JS -->
                 </div>
             </div>
-        </section>
 
-        <section id="skills" class="mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-slate-800 mb-4">Core Competencies</h2>
-                 <p class="max-w-3xl mx-auto text-slate-600">
-                    This section highlights my technical and commercial acumen, showcasing my ability to manage systems, logistics, and data-led improvement strategies required for scalable e-commerce operations.
-                </p>
-            </div>
-             <div class="bg-white p-8 rounded-xl shadow-md">
+            <!-- SKILLS RADAR CHART -->
+            <div class="lg:col-span-2 bg-white card-bg p-6 rounded-xl">
+                <h2 class="text-2xl font-bold mb-4 text-gray-700">Strategic & Technical Balance</h2>
                 <div class="chart-container">
-                    <canvas id="skillsChart"></canvas>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 text-sm">
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 text-teal-700">Operational Ownership & Process Design</h4>
-                        <ul class="list-disc list-inside text-slate-600 space-y-1">
-                            <li>End-to-End B2C/B2B Process Setup</li>
-                            <li>Standard Operating Procedure (SOP) Dev.</li>
-                            <li>E-commerce Growth Strategy</li>
-                            <li>Risk Mitigation / Business Continuity</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 text-teal-700">Logistics & Fulfillment</h4>
-                        <ul class="list-disc list-inside text-slate-600 space-y-1">
-                            <li>Last Mile Delivery Optimization</li>
-                            <li>Inventory Integration & Data Integrity</li>
-                            <li>Warehouse Management & Pick/Pack</li>
-                            <li>SLA Negotiation & 3rd Party Contract Management</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 text-teal-700">Process Automation & Systems</h4>
-                        <ul class="list-disc list-inside text-slate-600 space-y-1">
-                            <li>Lean Six Sigma Initiatives</li>
-                            <li>Continuous, Data-Led Optimization</li>
-                            <li>System Integrations (IT, Supply Chain, 3rd Party)</li>
-                            <li>JIRA, SQL, Generative AI for Automation</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 text-teal-700">Commercial Acumen & Leadership</h4>
-                        <ul class="list-disc list-inside text-slate-600 space-y-1">
-                            <li>Budget & Operational Cost Management (R14M Budget)</li>
-                            <li>Financial Insight & Performance Metrics (Looker Studio)</li>
-                            <li>Cross-Functional Team Collaboration</li>
-                            <li>Ability to Influence & Drive Collaboration</li>
-                        </ul>
-                    </div>
+                    <canvas id="skillsRadarChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <section id="education" class="mb-20">
-             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-slate-800 mb-4">Education & Certifications</h2>
-                 <p class="max-w-3xl mx-auto text-slate-600">
-                   My formal education and specialized certifications in process excellence and project delivery ensure a structured and data-led approach to operations management.
-                </p>
+        <!-- EXPERIENCE SECTION -->
+        <section class="bg-white card-bg p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-4 border-b pb-2 text-gray-700">E-Commerce & Operational Experience</h2>
+
+            <!-- EXPERIENCE TABS/NAV -->
+            <div id="experience-nav" class="flex flex-wrap border-b border-gray-200 mb-6">
+                <!-- Buttons populated by JS -->
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-md">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Education</h3>
-                     <p class="text-lg font-semibold text-slate-700">Post Graduate BCom-General</p>
-                     <p class="text-slate-600">Regent Business School (2017-2019)</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-md">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Certifications (Process & Agile)</h3>
-                    <ul class="space-y-3 text-slate-600">
-                        <li class="flex items-center"><span class="text-teal-600 font-bold mr-2">2015:</span> Black Belt LSSP (Directly supports Continuous Improvement)</li>
-                        <li class="flex items-center"><span class="text-teal-600 font-bold mr-2">2024:</span> Scrum Master</li>
-                        <li class="flex items-center"><span class="text-teal-600 font-bold mr-2">2021:</span> Product Owner</li>
-                        <li class="flex items-center"><span class="text-teal-600 font-bold mr-2">2022:</span> UX Design</li>
-                        <li class="flex items-center"><span class="text-teal-600 font-bold mr-2">2012:</span> USB Senior Leader</li>
-                    </ul>
-                </div>
+
+            <!-- DETAILED EXPERIENCE CONTENT -->
+            <div id="experience-content" class="transition-opacity duration-300">
+                <!-- Content populated by JS -->
             </div>
         </section>
 
-    </main>
-
-    <footer class="bg-slate-800 text-white">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <h3 class="text-2xl font-bold mb-4">Contact Me</h3>
-            <div class="flex justify-center items-center space-x-6">
-                 <a href="mailto:marynavaneedenmelkbos@gmail.com" class="hover:text-teal-400 transition-colors">marynavaneedenmelkbos@gmail.com</a>
-                <span class="text-slate-500">|</span>
-                <a href="https://www.linkedin.com/in/maryna-van-eeden/" target="_blank" class="hover:text-teal-400 transition-colors">LinkedIn</a>
-                 <span class="text-slate-500">|</span>
-                 <p>+27 84 987 0106</p>
-            </div>
-            <p class="text-slate-400 mt-6 text-sm">&copy; 2025 Maryna Van Eeden. All Rights Reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const experienceData = [
-                {
-                    company: 'PEP',
-                    role: 'PAXI and PEP Money Operations & System Manager (Product)',
-                    period: 'August 2022 - Present',
-                    tenure: (new Date().getFullYear() - 2022 + (new Date().getMonth())/12),
-                    achievements: [
-                        'Designed and set up end-to-end B2C and B2B operational processes for new PAXI service offerings, driving 15% revenue uplift and market expansion in logistics.',
-                        'Deeply focused on last-mile delivery optimization and fulfillment efficiency, ensuring a cost-efficient and flawless customer journey.',
-                        'Delivered strategic revenue boosters for PEP Money, generating R75M annual gross profit and ensuring commercial success.',
-                        'Owned the optimization of core systems and platforms, maintaining 100% system uptime and data integrity for platforms.',
-                        'Accelerated time-to-market by 25% by transitioning teams to agile, enabling rapid operational iterations and scaling.'
-                    ],
-                    keyMetric: 'Generated R75M annual gross profit'
-                },
-                {
-                    company: 'ONE DAY ONLY',
-                    role: 'Product Manager - E-Commerce Warehouse & Systems',
-                    period: 'March 2020 - July 2022',
-                    tenure: 2.33,
-                    achievements: [
-                        'Directed the product roadmap for Warehouse Management Systems (WMS), directly impacting fulfillment efficiency (pick, pack, inventory integration).',
-                        'Reduced development and maintenance costs through process optimization and automation in the e-commerce fulfillment chain.',
-                        'Transitioned teams to agile workflows to accelerate delivery cycles and improve operational scalability.',
-                        'Ensured product differentiation and customer adoption by maintaining high standards for the online operational value chain.'
-                    ],
-                    keyMetric: 'Optimized Warehouse Management Systems'
-                },
-                {
-                    company: 'SANTAM',
-                    role: 'Product Owner (SME) - Claims Value Chain Optimization',
-                    period: 'February 2003 - February 2020',
-                    tenure: 17,
-                    achievements: [
-                        'Implemented Lean Six Sigma initiatives (Black Belt LSSP) across the claims value chain, successfully cutting costs and improving process efficiency.',
-                        'Designed and delivered strategic roadmaps that reduced operational costs and elevated customer service index (CSI).',
-                        'Created executive reports and QlikView dashboards for board-level decision-making on performance metrics and cost management.',
-                        'Ensured compliance with governance, risk controls, and quality standards for all operational processes.'
-                    ],
-                    keyMetric: 'Led large-scale Lean Six Sigma initiatives'
-                }
-            ];
+        const statsData = [
+            { icon: '💰', title: 'Annual Gross Profit Generated', value: 'R75M+', description: 'Delivered through strategic revenue boosters for PEP Money.' },
+            { icon: '🚀', title: 'Time-to-Market Reduction', value: '25%', description: 'Achieved by leading Agile/Scrum transformation for development teams.' },
+            { icon: '🚚', title: 'Last-Mile Expertise', value: 'B2C & B2B', description: 'Specialized in setting up and optimizing end-to-end fulfillment processes.' },
+            { icon: '✅', title: 'System Uptime Maintained', value: '100%', description: 'Ensured business continuity for core PAXI/PEP Money platforms.' }
+        ];
 
-            const timelineContainer = document.getElementById('experience-timeline');
-            experienceData.forEach((job, index) => {
-                const item = document.createElement('div');
-                item.className = 'bg-white rounded-xl shadow-md overflow-hidden';
-                item.innerHTML = `
-                    <div class="timeline-item-header p-6 flex justify-between items-center transition-colors hover:bg-slate-50">
+        const skillsData = [
+            { category: 'Operational Ownership & Process Design', skills: ['End-to-End B2C/B2B Process Setup', 'SOP Development & Scaling', 'Cost Management & Budget Control (R14M A/B)', 'Fulfillment & Returns Management'] },
+            { category: 'Logistics & Digital Product', skills: ['Last Mile Delivery Optimization', 'Inventory Integration & Data Integrity', 'Agile & Lean Delivery (Scrum/Kanban)', 'Product Strategy & Roadmapping (PAXI, PEP Money)'] },
+            { category: 'Process Optimization & Automation', skills: ['Lean Six Sigma Implementation', 'Workflow Automation Identification', 'System Integrations & Maintenance', 'Data-Driven Decision Making'] },
+            { category: 'Technology & Reporting', skills: ['JIRA, Figma, Google Analytics, SQL', 'GCP / Cloud Environments', 'QlikView & Executive Reporting', 'Generative AI Applications'] },
+        ];
+
+        const experienceData = [
+            {
+                id: 'pep',
+                title: 'PAXI and PEP Money Product Manager (Internal Promotion)',
+                company: 'PEP (Retail, E-commerce, Logistics)',
+                dates: 'Aug 2022 - Current',
+                score: 5, 
+                achievements: [
+                    'Designed and set up end-to-end B2C and B2B operational processes for new PAXI service offerings, ensuring fulfillment accuracy and cost-efficient last-mile delivery.',
+                    'Drove a 15% revenue uplift and expanded market share by successfully launching 3 new PAXI service offerings.',
+                    'Generated R75M in annual gross profit by delivering strategic revenue boosters for PEP Money.',
+                    'Accelerated product delivery by reducing time-to-market by 25% after transitioning teams to an agile methodology.',
+                    'Manage a R14M annual development budget, ensuring high ROI and rigorous operational cost management for the portfolio.',
+                    'Optimized development processes to maintain 100% system uptime for core platforms, ensuring business continuity.',
+                    'Mentored product and engineering teams, fostering innovation and improved delivery across cross-functional groups.'
+                ]
+            },
+            {
+                id: 'odd',
+                title: 'Product Manager - Warehouse Management & E-commerce',
+                company: 'ONE DAY ONLY (E-commerce)',
+                dates: 'Mar 2020 - Jul 2022',
+                score: 4, 
+                achievements: [
+                    'Owned the product roadmap for Warehouse Management Systems, directly addressing inventory integration and fulfillment efficiency.',
+                    'Reduced development and maintenance costs through process optimization and identifying opportunities for automation in warehouse workflows.',
+                    'Accelerated delivery cycles by transitioning fulfillment and system teams to agile ways of working.',
+                    'Delivered key feature enhancements that boosted user satisfaction and improved operational efficiency across the e-commerce channel.',
+                    'Conducted competitive analysis and built strategic partnerships to strengthen the overall logistics and value proposition.'
+                ]
+            },
+            {
+                id: 'santam',
+                title: 'Product Owner (SME) - Claims Value Chain',
+                company: 'SANTAM (Insurance)',
+                dates: 'Feb 2003 - Feb 2020',
+                score: 3, 
+                achievements: [
+                    'Led strategic roadmaps and projects that successfully reduced costs and improved Customer Service Index (CSI).',
+                    'Implemented Lean Six Sigma initiatives across the claims value chain, significantly cutting operational costs and improving claims efficiency.',
+                    'Created executive reports and QlikView dashboards to provide board-level financial and operational decision-making insights (demonstrating technical & commercial acumen).',
+                    'Enhanced product quality and customer experience through continuous system improvements and feature delivery.',
+                    'Ensured compliance with governance, risk controls, and quality standards across all projects.'
+                ]
+            }
+        ];
+
+        // --- Chart Data & Configuration ---
+        const radarLabels = skillsData.map(s => s.category);
+        const radarData = experienceData.map(exp => exp.score);
+
+        const radarConfig = {
+            type: 'radar',
+            data: {
+                labels: radarLabels,
+                datasets: [{
+                    label: 'Expertise Score (Tailored)',
+                    data: [5, 5, 4, 4], // Scores based on job fit
+                    backgroundColor: 'rgba(163, 42, 41, 0.2)',
+                    borderColor: '#A32A29',
+                    pointBackgroundColor: '#A32A29',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#A32A29',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: (context) => {
+                                return context[0].label;
+                            },
+                            label: (context) => {
+                                return `Score: ${context.raw}/5`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        suggestedMin: 0,
+                        suggestedMax: 5,
+                        pointLabels: {
+                            font: { size: 12 },
+                            color: '#4A5568'
+                        },
+                        ticks: { display: false }
+                    }
+                }
+            }
+        };
+
+        // --- Utility Functions ---
+
+        // Function to create stat cards
+        function renderStats() {
+            const container = document.getElementById('stat-grid');
+            container.innerHTML = statsData.map(stat => `
+                <div class="bg-white card-bg p-5 rounded-lg border-l-4 border-primary shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl">${stat.icon}</span>
                         <div>
-                            <h3 class="text-xl font-bold text-slate-800">${job.role}</h3>
-                            <p class="text-teal-600 font-semibold">${job.company} | ${job.period}</p>
-                        </div>
-                        <span class="transform transition-transform text-2xl text-slate-500 chevron">&#9662;</span>
-                    </div>
-                    <div class="timeline-item-body max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                        <div class="p-6 border-t border-slate-200">
-                            <ul class="list-disc list-inside space-y-2 text-slate-600">
-                                ${job.achievements.map(ach => `<li>${ach}</li>`).join('')}
-                            </ul>
+                            <p class="text-sm font-medium text-gray-500">${stat.title}</p>
+                            <p class="text-2xl font-bold text-gray-900">${stat.value}</p>
                         </div>
                     </div>
+                    <p class="text-xs mt-2 text-gray-500">${stat.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Function to render skills list
+        function renderSkills() {
+            const container = document.getElementById('skills-list');
+            container.innerHTML = skillsData.map(group => `
+                <div>
+                    <h3 class="font-semibold text-lg text-primary mb-2 flex items-center">
+                        <span class="mr-2 text-xl">
+                            ${group.category.includes('Logistics') ? '🚛' : group.category.includes('Technology') ? '💻' : group.category.includes('Optimization') ? '⚙️' : '🧠'}
+                        </span>
+                        ${group.category}
+                    </h3>
+                    <ul class="text-sm space-y-1 ml-6 list-disc text-gray-700">
+                        ${group.skills.map(skill => `<li>${skill}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        // Function to render experience navigation
+        function renderExperienceNav() {
+            const container = document.getElementById('experience-nav');
+            container.innerHTML = experienceData.map(exp => `
+                <button data-id="${exp.id}" class="nav-link py-3 px-4 text-sm font-medium transition duration-300 ease-in-out border-b-2 border-transparent hover:border-gray-400 hover:text-gray-900 focus:outline-none">
+                    ${exp.company}
+                </button>
+            `).join('');
+            
+            document.querySelectorAll('#experience-nav button').forEach(button => {
+                button.addEventListener('click', () => {
+                    setActiveExperience(button.getAttribute('data-id'));
+                });
+            });
+
+            // Set default active tab
+            setActiveExperience(experienceData[0].id);
+        }
+
+        // Function to render active experience content
+        function setActiveExperience(id) {
+            const exp = experienceData.find(e => e.id === id);
+            const content = document.getElementById('experience-content');
+            
+            // Update active state in nav
+            document.querySelectorAll('#experience-nav button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-id') === id) {
+                    btn.classList.add('active');
+                }
+            });
+
+            content.style.opacity = '0'; // Start fade out
+
+            setTimeout(() => {
+                content.innerHTML = `
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gray-900">${exp.title}</h3>
+                        <p class="text-base text-primary">${exp.company} | ${exp.dates}</p>
+                    </div>
+                    <ul class="space-y-3 text-base text-gray-700 list-disc ml-6">
+                        ${exp.achievements.map(a => `<li class="pl-2">${a}</li>`).join('')}
+                    </ul>
                 `;
-                timelineContainer.appendChild(item);
-            });
+                content.style.opacity = '1'; // Fade in new content
+            }, 300);
+        }
 
-            timelineContainer.addEventListener('click', (event) => {
-                const header = event.target.closest('.timeline-item-header');
-                if (header) {
-                    const body = header.nextElementSibling;
-                    const chevron = header.querySelector('.chevron');
-                    if (body.style.maxHeight && body.style.maxHeight !== '0px') {
-                        body.style.maxHeight = '0px';
-                        chevron.style.transform = 'rotate(0deg)';
-                    } else {
-                        body.style.maxHeight = body.scrollHeight + 'px';
-                        chevron.style.transform = 'rotate(180deg)';
-                    }
-                }
-            });
+        // --- Initialization ---
+        window.onload = function() {
+            // 1. Render data sections
+            renderStats();
+            renderSkills();
+            renderExperienceNav(); 
 
-            const mobileNav = document.getElementById('mobile-nav');
-            mobileNav.addEventListener('change', () => {
-                window.location.hash = mobileNav.value;
-            });
-            
-            const skillsCtx = document.getElementById('skillsChart').getContext('2d');
-            new Chart(skillsCtx, {
-                type: 'radar',
-                data: {
-                    labels: ['Operational Strategy', 'Logistics & Fulfillment', 'Process Automation', 'Commercial Acumen', 'Stakeholder Mgmt', 'Team Leadership'],
-                    datasets: [{
-                        label: 'Core Competencies (Job Fit)',
-                        data: [9, 9, 9, 8, 8, 9],
-                        backgroundColor: 'rgba(20, 184, 166, 0.2)',
-                        borderColor: 'rgba(15, 118, 110, 1)',
-                        pointBackgroundColor: 'rgba(15, 118, 110, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(15, 118, 110, 1)'
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    scales: {
-                        r: {
-                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
-                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
-                            pointLabels: { font: { size: 12 } },
-                            suggestedMin: 0,
-                            suggestedMax: 10,
-                            ticks: {
-                                backdropColor: 'rgba(248, 247, 244, 0)',
-                                color: '#64748b'
-                            }
-                        }
-                    },
-                    plugins: { legend: { display: false } }
-                }
-            });
-            
-            const expCtx = document.getElementById('experienceChart').getContext('2d');
-            new Chart(expCtx, {
-                type: 'bar',
-                data: {
-                    labels: experienceData.map(j => j.company).reverse(),
-                    datasets: [{
-                        label: 'Years of Service',
-                        data: experienceData.map(j => j.tenure).reverse(),
-                        backgroundColor: ['#14b8a6', '#2dd4bf', '#5eead4'],
-                        borderColor: ['#0f766e', '#0d9488', '#14b8a6'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Years'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.x !== null) {
-                                        label += context.parsed.x.toFixed(1) + ' years';
-                                    }
-                                    return label;
-                                },
-                                afterLabel: function(context) {
-                                   return experienceData.reverse()[context.dataIndex].keyMetric;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        });
+            // 2. Render Chart
+            const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+            new Chart(ctx, radarConfig);
+        };
     </script>
 </body>
 </html>
